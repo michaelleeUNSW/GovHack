@@ -3,17 +3,14 @@ package com.example.boone.app3;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,17 +19,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.mindorks.paracamera.Camera;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -139,68 +129,81 @@ public class MainActivity extends AppCompatActivity {
         String postcode = addresses.get(0).getPostalCode();
 
         TextView warning = findViewById(R.id.warning);
-        TextView preparedness = findViewById(R.id.preparedness);
         if(postcode.substring(0,1).equals("2")){
-        }else{
-            warning.setText("⚠ The COVID warning system is unavailable at postcode "+postcode+" (outside of NSW)!");
             try {
-                Log.d("testing1_case",String.valueOf(getNumActiveCases(postcode)));
+                getNumActiveCases(postcode);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }else{
+            warning.setText("⚠ The COVID warning system is unavailable at postcode "+postcode+" \n(outside of NSW)");
         }
         Log.d("testing1",postcode);
-        //⚠ There are x active COVID cases in your postcode of xxxx.
     }
 
-    private int getNumActiveCases(String postcode) throws IOException, JSONException {
-        String apiUrlString = "https://data.nsw.gov.au/data/api/3/action/datastore_search?resource_id=5200e552-0afb-4bde-b20f-f8dd4feff3d7";
-        int numCase = 0;
-        HttpURLConnection connection = null;
-        try {
-            URL url = new URL(apiUrlString);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setReadTimeout(5000); // 5 seconds
-            connection.setConnectTimeout(5000); // 5 seconds
-        } catch (MalformedURLException e) {
-            // Impossible: The only two URLs used in the app are taken from string resources.
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            // Impossible: "GET" is a perfectly valid request method.
-            e.printStackTrace();
-        }
-        int responseCode = connection.getResponseCode();
-        Log.d(getClass().getName(), "Response CODE: " + responseCode);
-        if (responseCode != 200) {
-            connection.disconnect();
-            throw new IOException("API failed. Response Code: " + responseCode);
-        }
+    private void getNumActiveCases(final String postcode) throws IOException, JSONException {
+        new AsyncTask<Void, Void, Integer>() {
+            @Override
+            protected Integer doInBackground(Void... arg) {
+                String apiUrlString = "https://data.nsw.gov.au/data/api/3/action/datastore_search?resource_id=5200e552-0afb-4bde-b20f-f8dd4feff3d7";
+                int numCase = 0;
+                try {
+                    HttpURLConnection connection = null;
+                        URL url = new URL(apiUrlString);
+                        connection = (HttpURLConnection) url.openConnection();
+                        connection.setRequestMethod("GET");
+                        connection.setReadTimeout(5000); // 5 seconds
+                        connection.setConnectTimeout(5000); // 5 seconds
+                    int responseCode = connection.getResponseCode();
+                    Log.d(getClass().getName(), "Response CODE: " + responseCode);
+                    if (responseCode != 200) {
+                        connection.disconnect();
+                        throw new IOException("API failed. Response Code: " + responseCode);
+                    }
 
-        // Read data from response.
-        StringBuilder builder = new StringBuilder();
-        BufferedReader responseReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String line = responseReader.readLine();
-        while (line != null) {
-            builder.append(line);
-            line = responseReader.readLine();
-        }
-        String responseString = builder.toString();
-//                Log.d(getClass().getName(), "Response String: " + responseString);
-        JSONObject responseJson = new JSONObject(responseString);
-        connection.disconnect();
+                    // Read data from response.
+                    StringBuilder builder = new StringBuilder();
+                    BufferedReader responseReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String line = responseReader.readLine();
+                    while (line != null) {
+                        builder.append(line);
+                        line = responseReader.readLine();
+                    }
+                    String responseString = builder.toString();
+                    JSONObject responseJson = new JSONObject(responseString);
+                    connection.disconnect();
 
-        JSONArray records = responseJson.getJSONObject("result").getJSONArray("records");
-        for (int i = 0; i < records.length(); i++) {
-            JSONObject record = records.getJSONObject(i);
-            String address = record.getString("Address");
-            Log.d("testing1",address);
-            String postcode2 = address.substring(address.length() - 4);
-            if (postcode.equals(postcode2)) {
-                numCase++;
+                    JSONArray records = responseJson.getJSONObject("result").getJSONArray("records");
+                    for (int i = 0; i < records.length(); i++) {
+                        JSONObject record = records.getJSONObject(i);
+                        String address = record.getString("Address");
+                        Log.d("testing1",address);
+                        String postcode2 = address.substring(address.length() - 4);
+                        if (postcode.equals(postcode2)) {
+                            numCase++;
+                        }
+                    }
+                    } catch (Exception e) {
+                        // Impossible: "GET" is a perfectly valid request method.
+                        e.printStackTrace();
+                    }
+                return numCase;
             }
-        }
-        return numCase;
+
+            @Override
+            protected void onPostExecute(Integer integer) {
+                TextView warning = findViewById(R.id.warning);
+                TextView preparedness = findViewById(R.id.preparedness);
+                String numCase = integer.toString();
+                String p = String.valueOf(postcode);
+                warning.setText("⚠ There are "+numCase+" active COVID case(s) in your postcode of "+p);
+                if(integer>0){
+                    preparedness.setText("BE PREPARED TO CLOSE!");
+                }else{
+                    preparedness.setText("It's safe to keep the store open.");
+                }
+            }
+        }.execute();
     }
 }
 

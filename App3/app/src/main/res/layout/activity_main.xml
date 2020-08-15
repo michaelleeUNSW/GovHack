@@ -42,7 +42,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
-                android:text="Please Be Careful"
+                android:text="PLEASE BE CAREFUL!"
                 />
         </LinearLayout>
 
