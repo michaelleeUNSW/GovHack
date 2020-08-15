@@ -47,7 +47,6 @@ public class ListingActivity extends AppCompatActivity {
         condition = (EditText) findViewById(R.id.condition);
         description = (EditText) findViewById(R.id.description);
 
-
         Bundle extras = getIntent().getExtras();
         populateWithBookAPIData(extras);
 

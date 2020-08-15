@@ -18,6 +18,11 @@ import android.widget.Toast;
 
 import com.mindorks.paracamera.Camera;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 
 public class MainActivity extends AppCompatActivity {
     String merchantKey = "LA2";
@@ -44,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.CAMERA},
                     PERMISSION_REQUEST_CODE);
         }
-
     }
+
+
     private int ISBN_FOR_LISTING=201;
     private String RuName = "Michael_Lee-MichaelL-Testin-lcfyfuf";
 

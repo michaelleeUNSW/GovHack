@@ -45,24 +45,6 @@ public class ISBNScanner extends AppCompatActivity implements ZXingScannerView.R
         setContentView(zXingScannerView);
         zXingScannerView.setResultHandler(this);
         zXingScannerView.startCamera();
-        Log.d("testing1","0");
-
-        try {
-            Log.d("testing1","a");
-            String html ="https://stackoverflow.com/questions/2971155/what-is-the-fastest-way-to-scrape-html-webpage-in-android";
-            Document doc = null;
-            doc = DocumentBuilderFactory.newInstance()
-                    .newDocumentBuilder().parse(new InputSource(new StringReader(html)));
-            XPathExpression xpath = null;
-            xpath = XPathFactory.newInstance()
-                    .newXPath().compile("//*[@id=\"answers-header\"]/div/div[1]/h2");
-            String result = (String) xpath.evaluate(doc, XPathConstants.STRING);
-            Log.d("testing1",result);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.d("testing1","b");
-        }
-
     }
 
     @Override
