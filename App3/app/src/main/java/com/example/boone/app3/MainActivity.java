@@ -3,9 +3,14 @@ package com.example.boone.app3;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -23,10 +28,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.List;
+import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
     String merchantKey = "LA2";
-//Variables
+    //Variables
     private LinearLayout.LayoutParams lp;
     private LinearLayout parent, bottom;
 
@@ -35,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("Testing_","start");
+        Log.d("Testing_", "start");
         String RuName = getString(R.string.RuName);
 
-        Log.d("Testing_",RuName);
+        Log.d("Testing_", RuName);
         this.setTitle("Product Details");
 
 
@@ -52,26 +60,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private int ISBN_FOR_LISTING=201;
+    private int ISBN_FOR_LISTING = 201;
     private String RuName = "Michael_Lee-MichaelL-Testin-lcfyfuf";
 
-    public void listingWithBarcode(View view){
+    public void listingWithBarcode(View view) {
         Intent intent = new Intent(MainActivity.this, ISBNScanner.class);
-        startActivityForResult(intent,ISBN_FOR_LISTING );
+        startActivityForResult(intent, ISBN_FOR_LISTING);
     }
 
-    public void listingWithoutBarcode(View view){
+    public void listingWithoutBarcode(View view) {
         Intent intent = new Intent(MainActivity.this, ListingActivity.class);
         startActivity(intent);
     }
 
-    private int ISBN_FOR_DELETING=202;
-    public void deleteWithBarcode(View view){
+    private int ISBN_FOR_DELETING = 202;
+
+    public void deleteWithBarcode(View view) {
         Intent intent = new Intent(MainActivity.this, ISBNScanner.class);
-        startActivityForResult(intent,ISBN_FOR_DELETING );
+        startActivityForResult(intent, ISBN_FOR_DELETING);
 
     }
-    public void deleteWithoutBarcode(View view){
+
+    public void deleteWithoutBarcode(View view) {
         Intent intent = new Intent(MainActivity.this, DeleteActivity.class);
         startActivity(intent);
     }
@@ -79,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode== ISBN_FOR_LISTING && resultCode == RESULT_OK){
+        if (requestCode == ISBN_FOR_LISTING && resultCode == RESULT_OK) {
             String ItemISBN = data.getStringExtra("ISBN");
             Intent intent = new Intent(MainActivity.this, ListingActivity.class);
             intent.putExtra("ISBN", ItemISBN);
             startActivity(intent);
 
-        }else if(requestCode== ISBN_FOR_DELETING && resultCode == RESULT_OK){
+        } else if (requestCode == ISBN_FOR_DELETING && resultCode == RESULT_OK) {
             String ItemISBN = data.getStringExtra("ISBN");
             Intent intent = new Intent(MainActivity.this, DeleteActivity.class);
             intent.putExtra("ISBN", ItemISBN);
@@ -96,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
 }
 
