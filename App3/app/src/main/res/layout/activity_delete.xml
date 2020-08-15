@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DeleteActivity"
+    android:layout_margin="30dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checking Out:"
+            android:textColor="#383631"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loading Title..."
+            android:textColor="#383631"
+            android:textStyle="bold"
+            android:textSize="30dp" />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="right"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/confirm"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:text="CANCEL"
+            android:onClick="finish"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_dark"
+            android:textStyle="bold"
+            android:layout_weight="0"/>
+        <Button
+            android:id="@+id/cancel"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            android:text="CONFIRM"
+            android:onClick="withdraw"
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"
+            android:layout_weight="0"/>
+
+    </LinearLayout>
+</LinearLayout>

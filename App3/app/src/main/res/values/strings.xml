@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">App3</string>
+    <string name="facebook_app_id">534269847086800</string>
+    <string name="fb_login_protocol_scheme">fb534269847086800</string>
+    <string name="Clarifai_API_Key">6151337596614cd59034a09878d9bd62</string>
+    <string name="chip_hint">Press \'Done\' to submit new tag      ......</string>
+
+    <string name="clientSecret">SBX-393f3dea6b06-b32b-4b7e-9b5e-c8f2</string>
+    <string name="clientId">MichaelL-Testing-SBX-8393f3dea-33a18be8</string>
+    <string name="createInventoryItemURL">https://api.sandbox.ebay.com/sell/inventory/v1/inventory_item/</string>
+    <string name="fulfillmentPolicyId">6116001000</string>
+    <string name="paymentPolicyId">6115964000</string>
+    <string name="returnPolicyId">6116008000</string>
+    <string name="createOfferURL">https://api.sandbox.ebay.com/sell/inventory/v1/offer</string>
+    <string name="publishOfferURL">https://api.sandbox.ebay.com/sell/inventory/v1/offer/</string>
+
+    <string name="RuName">Michael_Lee-MichaelL-Testin-lcfyfuf</string>
+    <string name="OAuthURL">auth.sandbox.ebay.com</string>
+    <string name="authorisationURL">https://api.sandbox.ebay.com/identity/v1/oauth2/token</string>
+
+    <string name="getTitleURL">https://api.sandbox.ebay.com/sell/inventory/v1/inventory_item/</string>
+    <string name="getOffersURL">https://api.sandbox.ebay.com/sell/inventory/v1/offer?sku=</string>
+    <string name="withdrawOffersURL">https://api.sandbox.ebay.com/sell/inventory/v1/offer/</string>
+    <string name="deleteInventoryURL">https://api.sandbox.ebay.com/sell/inventory/v1/inventory_item/</string>
+
+    <string name="redirectionHost">www.example.com</string>
+    <string name="redirectionPath">/my_redirect1</string>
+    <string name="redirectionScheme">https</string>
+
+</resources>

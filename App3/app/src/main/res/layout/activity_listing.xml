@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO: Fix other details -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/parent"
+    tools:context=".ListingActivity">
+
+
+    <!-- ELEMENT: Photos and RESET bar -->
+    <LinearLayout
+        android:id="@+id/parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:background="#FAFAFA"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" >
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="Photos"
+                android:textColor="#383631"
+                android:textStyle="bold"
+                android:layout_weight="20"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="90"/>
+
+            <Button
+                android:id="@+id/addButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#FAFAFA"
+                android:text="RESET"
+                android:textAllCaps="false"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                android:layout_weight="20"/>
+
+        </LinearLayout>
+
+        <!-- ELEMENT: Pictures -->
+        <LinearLayout
+            android:layout_width="344dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:layout_weight="40" >
+
+            <ImageButton
+                android:id="@+id/coverImage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/dotted_border"
+                android:src="@drawable/add_photo_red"
+                android:layout_weight="70"
+                android:layout_gravity="center"/>
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="match_parent" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/OnlineItemsScroll"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#FAFAFA"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <ScrollView
+                android:id="@+id/picScroll"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="30" >
+
+                <LinearLayout
+                    android:id="@+id/imgScroll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <ImageButton
+                        android:id="@+id/smallImgButton2"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/dotted_border" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <ImageButton
+                        android:id="@+id/smallImgButton3"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/dotted_border" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <ImageButton
+                        android:id="@+id/smallImgButton4"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/dotted_border" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <ImageButton
+                        android:id="@+id/smallImgButton5"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/dotted_border" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <ImageButton
+                        android:id="@+id/smallImgButton6"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/dotted_border" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <ImageButton
+                        android:id="@+id/smallImgButton7"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/dotted_border" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <!-- ELEMENT: Inputs -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="fill_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Title"
+                android:inputType="text"
+                android:textColorHint="#a3a3a3" />
+
+            <EditText
+                android:id="@+id/Price"
+                android:layout_width="fill_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Price"
+                android:inputType="numberDecimal"
+                android:textColorHint="#a3a3a3" />
+            <EditText
+                android:id="@+id/isbn"
+                android:layout_width="fill_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="ISBN"
+                android:inputType="numberDecimal"
+                android:textColorHint="#a3a3a3" />
+
+            <!--TODO Replace with spinner-->
+            <EditText
+                android:id="@+id/condition"                android:layout_width="fill_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Condition"
+                android:inputType="text"
+                android:textColorHint="#a3a3a3" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                android:background="@drawable/edit_text_background"
+                android:textColor="#a3a3a3"
+                android:textSize="18dp"
+                android:paddingVertical="10dp"
+                android:gravity="start" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <Button
+                android:id="@+id/Listing"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="List Item"
+                android:textSize="20dp"
+                android:background="@android:color/holo_red_light"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:onClick="Listing"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
