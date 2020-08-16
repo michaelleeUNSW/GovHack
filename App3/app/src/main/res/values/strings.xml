@@ -2,7 +2,6 @@
     <string name="app_name">App3</string>
     <string name="facebook_app_id">534269847086800</string>
     <string name="fb_login_protocol_scheme">fb534269847086800</string>
-    <string name="Clarifai_API_Key">6151337596614cd59034a09878d9bd62</string>
     <string name="chip_hint">Press \'Done\' to submit new tag      ......</string>
 
     <string name="clientSecret">SBX-393f3dea6b06-b32b-4b7e-9b5e-c8f2</string>
