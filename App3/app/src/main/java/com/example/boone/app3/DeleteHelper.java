@@ -41,6 +41,7 @@ public class DeleteHelper {
             @Override
             public Request.Builder JsonRequest(Request.Builder RB) throws JSONException {
                 String getTitleURL = activity.getString(R.string.getTitleURL);
+                Log.d("testing1",getTitleURL+ItemSku);
                 return RB.url(getTitleURL+ItemSku);
             }
 
@@ -48,11 +49,21 @@ public class DeleteHelper {
             void OnResponse(JSONObject data, Response response) {
                 try {
                     JSONObject product = data.getJSONObject("product");
-                    String title = product.getString("title");
-                    TextView bookTitle = (TextView) activity.findViewById(R.id.title);
-                    bookTitle.setText(title);
-                    activity.title = title;
+                    final String title = product.getString("title");
+                    activity.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            TextView bookTitle = (TextView) activity.findViewById(R.id.title);
+                            bookTitle.setText(title);
+                            activity.title = title;
+                        }
+                    });
+
                 } catch (Exception e){
+                    Log.d("testing1",e.toString());
+
                     terminateDueToError("Book Not Found");
                 }
             }

@@ -7,9 +7,9 @@
     <string name="clientSecret">SBX-393f3dea6b06-b32b-4b7e-9b5e-c8f2</string>
     <string name="clientId">MichaelL-Testing-SBX-8393f3dea-33a18be8</string>
     <string name="createInventoryItemURL">https://api.sandbox.ebay.com/sell/inventory/v1/inventory_item/</string>
-    <string name="fulfillmentPolicyId">6116001000</string>
-    <string name="paymentPolicyId">6115964000</string>
-    <string name="returnPolicyId">6116008000</string>
+    <string name="fulfillmentPolicyId">6132889000</string>
+    <string name="paymentPolicyId">6132888000</string>
+    <string name="returnPolicyId">6132886000</string>
     <string name="createOfferURL">https://api.sandbox.ebay.com/sell/inventory/v1/offer</string>
     <string name="publishOfferURL">https://api.sandbox.ebay.com/sell/inventory/v1/offer/</string>
 

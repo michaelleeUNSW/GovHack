@@ -44,7 +44,7 @@ public class ListingHelper {
         ItemName = name;
         ItemSku = sku;
         ItemDescription = description;
-        ItemPrice = price;
+        ItemPrice = price.replace("$","");
         merchantLocationKey = mKey;
         ItemImageUrl = imageUrl;
     }

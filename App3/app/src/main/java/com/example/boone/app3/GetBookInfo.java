@@ -168,7 +168,8 @@ public class GetBookInfo extends AsyncTask<String, Object, String[]> {
         EditText name = (EditText) currActivity.findViewById(R.id.name);
         EditText description = (EditText) currActivity.findViewById(R.id.description);
         ImageView imageView = (ImageView) currActivity.findViewById(R.id.coverImage);
-        if (result[0] != null) {name.setText(result[0]);};
+        EditText price = currActivity.findViewById(R.id.Price);
+        if (result[0] != null) {name.setText(result[0]); price.setText("$10");};
         if (result[1] != null) {description.setText(result[1]);};
         if (result[2] != null) {
             result[2] = result[2].replace("http://", "https://");

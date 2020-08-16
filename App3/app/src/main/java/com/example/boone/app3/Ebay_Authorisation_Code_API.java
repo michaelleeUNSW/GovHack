@@ -43,7 +43,7 @@ public abstract class Ebay_Authorisation_Code_API {
 
     //Temp
     private String sku = "SA10";
-    private String merchantLocationKey = "LA1";
+    private String merchantLocationKey = "LA2";
 
     public void runWithAuth() {
         prefs = Activity.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
